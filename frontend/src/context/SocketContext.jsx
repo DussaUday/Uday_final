@@ -26,7 +26,7 @@ export const SocketContextProvider = ({ children }) => {
 	const {setFollowersDetails}=useState([]);
 	useEffect(() => {
 		if (authUser) {
-			const socket = io("http://localhost:5000", {
+			const socket = io("https://uday-final.onrender.com/", {
 				query: {
 					userId: authUser._id,
 				},
