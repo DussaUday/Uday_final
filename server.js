@@ -24,7 +24,7 @@ app.use(express.json()); // to parse the incoming requests with JSON payloads (f
 app.use(cookieParser());
 app.use(
     cors({
-        origin: "http://localhost:3000", // Allow requests from this origin
+        origin: "https://uday-final.onrender.com/", // Allow requests from this origin
         credentials: true, // Allow cookies and credentials
     })
 );
