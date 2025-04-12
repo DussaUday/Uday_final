@@ -129,6 +129,9 @@ const Home = () => {
                         <GamePage onGameRequestUpdate={handleGameRequestUpdate} />
                     </div>
                 )}
+                <div className="transform hover:scale-110 transition duration-300">
+                    <LogoutButton />
+                </div>
             </main>
 
             {/* Bottom Navigation */}
