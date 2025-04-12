@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+    import React, { useState, useEffect } from "react";
 import LogoutButton from "./LogoutButton";
 import Sidebar from "../../components/sidebar/Sidebar";
 import MessageContainer from "../../components/messages/MessageContainer";
-import { FaCommentDots, FaHome, FaUser, FaPlus, FaSearch, FaGamepad } from "react-icons/fa";
+import { FaCommentDots, FaHome, FaUser, FaPlus, FaSearch, FaGamepad, FaSignOutAlt } from "react-icons/fa";
 import { useAuthContext } from "../../context/AuthContext";
 import ProfilePage from "../profile/ProfilePage";
 import CreatePost from "../../components/posts/CreatePost.jsx";
@@ -129,9 +129,6 @@ const Home = () => {
                         <GamePage onGameRequestUpdate={handleGameRequestUpdate} />
                     </div>
                 )}
-                <div className="transform hover:scale-110 transition duration-300">
-                    <LogoutButton />
-                </div>
             </main>
 
             {/* Bottom Navigation */}
@@ -213,8 +210,36 @@ const Home = () => {
                         </div>
                         <span className="text-xs mt-1">Games</span>
                     </button>
+
+                    {/* Logout Button */}
+                    <button
+                        onClick={() => setActiveView('logout')}
+                        className={`flex flex-col items-center p-2 rounded-xl transition-all duration-300 ${activeView === 'logout' ? 'text-blue-600 bg-blue-50' : 'text-gray-500 hover:text-blue-500'}`}
+                    >
+                        <FaSignOutAlt className="w-6 h-6 transition-transform duration-300 hover:scale-110" />
+                        <span className="text-xs mt-1">Logout</span>
+                    </button>
                 </div>
             </nav>
+
+            {/* Logout Modal */}
+            {activeView === 'logout' && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full">
+                        <h3 className="text-lg font-medium text-gray-900 mb-4">Confirm Logout</h3>
+                        <p className="text-gray-600 mb-6">Are you sure you want to logout?</p>
+                        <div className="flex justify-end space-x-3">
+                            <button
+                                onClick={() => setActiveView('home')}
+                                className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+                            >
+                                Cancel
+                            </button>
+                            <LogoutButton className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700" />
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
