@@ -2,6 +2,7 @@ import useGetConversations from "../../hooks/useGetConversations";
 import Conversation from "./Conversation";
 import useConversation from "../../zustand/useConversation";
 import PropTypes from "prop-types";
+
 const Conversations = ({ onSelectConversation }) => {
     const { loading, conversations } = useGetConversations();
     const { unreadMessages } = useConversation();
@@ -12,7 +13,8 @@ const Conversations = ({ onSelectConversation }) => {
                 <h2 className="text-xl font-semibold text-gray-800 dark:text-white">Chats</h2>
             </div>
             
-            <div className="flex-1 overflow-y-auto p-2">
+            {/* Adjusted container with proper padding at the bottom for the menu bar */}
+            <div className="flex-1 overflow-y-auto p-2 pb-20 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800">
                 {conversations
                     .filter((conversation) => !conversation.isArchived)
                     .sort((a, b) => {
@@ -54,7 +56,9 @@ const Conversations = ({ onSelectConversation }) => {
         </div>
     );
 };
+
 Conversations.propTypes = {
     onSelectConversation: PropTypes.func.isRequired,
-}
+};
+
 export default Conversations;
